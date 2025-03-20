@@ -23,6 +23,7 @@ public class User {
     @NotBlank(message = "Veuillez communiquer une valeur")
     private String lastName;
 
+    @Column(unique = true)
     @NotNull(message = "Veuillez communiquer une valeur")
     @NotBlank(message = "Veuillez communiquer une valeur")
     private String email;
