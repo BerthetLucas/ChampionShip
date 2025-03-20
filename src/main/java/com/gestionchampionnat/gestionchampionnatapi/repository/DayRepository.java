@@ -11,5 +11,5 @@ public interface DayRepository extends CrudRepository<Day, Integer> {
     @Override
     List<Day> findAll();
 
-    List<Day> findAllByIdChampionship(ChampionShip idChampionship);
+    List<Day> findAllByChampionship(ChampionShip Championship);
 }

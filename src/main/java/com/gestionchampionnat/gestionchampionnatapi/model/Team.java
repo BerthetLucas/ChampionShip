@@ -40,11 +40,11 @@ public class Team {
     private List<ChampionShip> championShips;
 
     @OneToMany(mappedBy = "team1", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("team1-games")
     private List<Game> team1;
 
     @OneToMany(mappedBy = "team2", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("team2-games")
     private List<Game> team2;
 
     public Team() {

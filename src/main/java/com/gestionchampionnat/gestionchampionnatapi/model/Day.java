@@ -16,19 +16,20 @@ public class Day {
     private String number;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
-    private ChampionShip idChampionship;
+    @JoinColumn(name = "championship_id", nullable = false)
+    @JsonBackReference("championship-days")
+    private ChampionShip championship;
 
     @OneToMany(mappedBy = "day", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonManagedReference("day-games")
     private List<Game> games;
 
     public Day() {
     }
 
-    public Day(String number, ChampionShip idChampionship) {
+    public Day(String number, ChampionShip championship) {
         this.number = number;
-        this.idChampionship = idChampionship;
+        this.championship = championship;
     }
 
     public Integer getId() {
@@ -47,11 +48,11 @@ public class Day {
         this.number = number;
     }
 
-    public ChampionShip getIdChampionship() {
-        return idChampionship;
+    public ChampionShip getChampionship() {
+        return championship;
     }
 
-    public void setIdChampionship(ChampionShip idChampionship) {
-        this.idChampionship = idChampionship;
+    public void setIdChampionship(ChampionShip championship) {
+        this.championship = championship;
     }
 }

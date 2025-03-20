@@ -16,15 +16,15 @@ public class Game {
     private Integer team2point;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference("team1-games")
     private Team team1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference("team2-games")
     private Team team2;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonBackReference("day-games")
     private Day day;
 
     public Game() {

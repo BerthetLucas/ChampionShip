@@ -49,8 +49,8 @@ public class ChampionShip {
             inverseJoinColumns = {@JoinColumn(name = "team_id")})
     private List<Team> teams;
 
-    @OneToMany(mappedBy = "idChampionship", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "championship", fetch = FetchType.LAZY)
+    @JsonManagedReference("championship-days")
     private List<Day> days;
 
     public ChampionShip() {
@@ -66,7 +66,7 @@ public class ChampionShip {
         this.teams = team;
         this.days = days;
     }
-    
+
     public Integer getId() {
         return id;
     }

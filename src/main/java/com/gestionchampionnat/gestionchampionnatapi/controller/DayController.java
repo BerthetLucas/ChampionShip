@@ -36,7 +36,7 @@ public class DayController {
     @GetMapping("/championship/{id}")
     public List<Day> getChampionshipDays(@PathVariable(name = "id", required = true) ChampionShip championShip) {
 
-        return dayRepository.findAllByIdChampionship(championShip);
+        return dayRepository.findAllByChampionship(championShip);
     }
 
     @GetMapping("/{id}")
