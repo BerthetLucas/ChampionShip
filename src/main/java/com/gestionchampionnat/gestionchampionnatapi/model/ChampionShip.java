@@ -66,8 +66,7 @@ public class ChampionShip {
         this.teams = team;
         this.days = days;
     }
-
-
+    
     public Integer getId() {
         return id;
     }

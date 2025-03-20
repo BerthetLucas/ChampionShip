@@ -2,6 +2,7 @@ package com.gestionchampionnat.gestionchampionnatapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,14 @@ public class Team {
             mappedBy = "teams")
     @JsonIgnore
     private List<ChampionShip> championShips;
+
+    @OneToMany(mappedBy = "team1", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Game> team1;
+
+    @OneToMany(mappedBy = "team2", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Game> team2;
 
     public Team() {
     }
@@ -78,5 +87,7 @@ public class Team {
     public void setChampionShips(List<ChampionShip> championShips) {
         this.championShips = championShips;
     }
+
+
 }
 
