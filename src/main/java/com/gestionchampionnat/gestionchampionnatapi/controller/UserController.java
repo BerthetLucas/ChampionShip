@@ -61,18 +61,20 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
 
+        userToUpdate.setId(user.getId());
         userRepository.save(userToUpdate);
         return new ResponseEntity<>(userToUpdate, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable(name = "id", required = true) User user) {
+    public ResponseEntity<User> deleteUser(@PathVariable(name = "id", required = true) Integer id) {
+        User user = userRepository.findUserById(id);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
 
         userRepository.delete(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
