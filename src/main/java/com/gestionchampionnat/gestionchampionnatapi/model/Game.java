@@ -9,8 +9,7 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
+    
     private Integer team1point;
 
     private Integer team2point;

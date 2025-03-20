@@ -31,7 +31,6 @@ public class ChampionShipController {
         if (championShip == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no championship found");
         }
-
         return championShip;
     }
 
