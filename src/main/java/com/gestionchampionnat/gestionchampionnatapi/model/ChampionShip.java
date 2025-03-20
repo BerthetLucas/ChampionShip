@@ -1,6 +1,7 @@
 package com.gestionchampionnat.gestionchampionnatapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -48,10 +49,14 @@ public class ChampionShip {
             inverseJoinColumns = {@JoinColumn(name = "team_id")})
     private List<Team> teams;
 
+    @OneToMany(mappedBy = "idChampionship", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Day> days;
+
     public ChampionShip() {
     }
 
-    public ChampionShip(String name, LocalDate startDate, LocalDate endDate, Integer wonPoint, Integer lostPoint, Integer drawPoint, List<Team> team) {
+    public ChampionShip(String name, LocalDate startDate, LocalDate endDate, Integer wonPoint, Integer lostPoint, Integer drawPoint, List<Team> team, List<Day> days) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -59,6 +64,7 @@ public class ChampionShip {
         this.lostPoint = lostPoint;
         this.drawPoint = drawPoint;
         this.teams = team;
+        this.days = days;
     }
 
 
@@ -124,5 +130,13 @@ public class ChampionShip {
 
     public void setTeams(List<Team> team) {
         this.teams = team;
+    }
+
+    public List<Day> getDays() {
+        return days;
+    }
+
+    public void setDays(List<Day> days) {
+        this.days = days;
     }
 }

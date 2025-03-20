@@ -2,6 +2,7 @@ package com.gestionchampionnat.gestionchampionnatapi.controller;
 
 import com.gestionchampionnat.gestionchampionnatapi.model.ChampionShip;
 import com.gestionchampionnat.gestionchampionnatapi.repository.ChampionShipRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,13 +36,13 @@ public class ChampionShipController {
     }
 
     @PostMapping
-    public ResponseEntity<ChampionShip> createChampionShip(@RequestBody ChampionShip championShip) {
+    public ResponseEntity<ChampionShip> createChampionShip(@Valid @RequestBody ChampionShip championShip) {
         championShipRepository.save(championShip);
         return new ResponseEntity<>(championShip, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ChampionShip> updateChampionShip(@RequestBody ChampionShip updatedChampionShip, @PathVariable(name = "id", required = true) ChampionShip championShip) {
+    public ResponseEntity<ChampionShip> updateChampionShip(@Valid @RequestBody ChampionShip updatedChampionShip, @PathVariable(name = "id", required = true) ChampionShip championShip) {
 
         if (championShip == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no championship found");

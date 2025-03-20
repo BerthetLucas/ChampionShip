@@ -2,6 +2,7 @@ package com.gestionchampionnat.gestionchampionnatapi.controller;
 
 import com.gestionchampionnat.gestionchampionnatapi.model.User;
 import com.gestionchampionnat.gestionchampionnatapi.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         String password = user.getPassword();
         user.setPassword(passwordEncoder.encode(password));
         return new ResponseEntity<>(userRepository.save(user), HttpStatus.CREATED);
@@ -55,7 +56,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@RequestBody User userToUpdate, @PathVariable(name = "id", required = true) User user) {
+    public ResponseEntity<User> updateUser(@Valid @RequestBody User userToUpdate, @PathVariable(name = "id", required = true) User user) {
 
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
